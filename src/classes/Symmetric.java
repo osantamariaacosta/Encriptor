@@ -48,17 +48,26 @@ public class Symmetric extends EncryptorComponent {
 	}
 	
 	@Override
-	public void decryptMessage(String messageName, String keyName) throws Exception {
-		byte[] key = readKeyFile(keyName);
-		byte[] encryptedMessage = readMessageFile(messageName);
-		System.out.println(encryptedMessage.length);
-		Cipher cipher = Cipher.getInstance("AES");
-		SecretKeySpec k = new SecretKeySpec(key,"AES");
-		cipher.init(Cipher.DECRYPT_MODE, k);
-		byte[] DecryptedData = cipher.doFinal(encryptedMessage);
-		String message = new String(DecryptedData, StandardCharsets.UTF_8);
-		System.out.println("El mensaje era: ");
-		System.out.println(message);
+	public String decryptMessage(String messageName, String keyName) throws Exception {
+		
+		try {
+			byte[] key = readKeyFile(keyName);
+			byte[] encryptedMessage = readMessageFile(messageName);
+			System.out.println(encryptedMessage.length);
+			Cipher cipher = Cipher.getInstance("AES");
+			SecretKeySpec k = new SecretKeySpec(key,"AES");
+			cipher.init(Cipher.DECRYPT_MODE, k);
+			byte[] DecryptedData = cipher.doFinal(encryptedMessage);
+			String message = new String(DecryptedData, StandardCharsets.UTF_8);
+	
+			return message;
+			
+	    } catch (Exception error ) {
+	    	System.out.println("Symetric clase metodo encriptar");
+	    	System.out.println(error);
+	    	System.out.println(error.getMessage());
+	    	return "mensaje no desencriptado";
+	    }
 	}
 	
 	

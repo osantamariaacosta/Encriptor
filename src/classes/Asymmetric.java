@@ -40,6 +40,11 @@ public class Asymmetric extends EncryptorComponent {
 	public Asymmetric() {
 
 	}
+	
+	public void holamundo()
+	{
+		
+	}
 
 	@Override
 	public void createKey(String name) throws Exception {
@@ -83,15 +88,21 @@ public class Asymmetric extends EncryptorComponent {
 	}
 	
 	@Override
-	public void decryptMessage(String messageName, String keyName) throws Exception {
+	public String decryptMessage(String messageName, String keyName) throws Exception {
+		try {
 		PrivateKey privKey = (PrivateKey)readKeyFromFile(keyName, PRIVATE);
 		Cipher cipher = Cipher.getInstance("RSA");
 		cipher.init(Cipher.DECRYPT_MODE, privKey);
 		byte[] encryptedMessage = readMessageFile(messageName);
 		byte[] decryptedData = cipher.doFinal(encryptedMessage);
 	    String message = new String(decryptedData,StandardCharsets.UTF_8);
-	    System.out.println("El mensaje era: ");
-		System.out.println(message);
+			return message;
+	    } catch (Exception error ) {
+	    	System.out.println("Asymetric clase metodo encriptar");
+	    	System.out.println(error);
+	    	System.out.println(error.getMessage());
+	    	return "mensaje no desencriptado";
+	    }
 	}
 	
 	

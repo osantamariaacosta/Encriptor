@@ -35,9 +35,9 @@ public class EncryptManager {
 		encriptor.encryptMessage(messageName, message, keyName);
 	}
 	
-	public void decryptMessage(String messageName, String keyName) throws Exception
+	public String decryptMessage(String messageName, String keyName) throws Exception
 	{
-		encriptor.decryptMessage(messageName, keyName);
+		return encriptor.decryptMessage(messageName, keyName);
 	}
 	
 }

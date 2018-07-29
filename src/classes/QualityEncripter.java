@@ -59,7 +59,7 @@ public class QualityEncripter extends EncryptorComponent {
 	
 	
 	@Override	
-	public void decryptMessage(String messageName, String keyName) throws Exception 
+	public String decryptMessage(String messageName, String keyName) throws Exception 
 	{
 
         String secretKey = "qualityinfosolutions"; //llave para desenciptar datos
@@ -77,15 +77,16 @@ public class QualityEncripter extends EncryptorComponent {
             byte[] plainText = decipher.doFinal(message);
 
             base64EncryptedString = new String(plainText, "UTF-8");
-    	    System.out.println("El mensaje era: ");
-    		System.out.println(base64EncryptedString);
+    		return base64EncryptedString;
             
 
         } catch (Exception error ) {
         	System.out.println("Quality clase metodo encriptar");
         	System.out.println(error);
         	System.out.println(error.getMessage());
+        	return "mensaje no desencriptado";
         }
+		
         
 	}
 		

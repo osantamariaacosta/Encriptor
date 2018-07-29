@@ -71,7 +71,8 @@ public class UI {
 			String keyName = br.readLine();
 			System.out.println("Message name: ");
 			String messageName = br.readLine();
-			encryptManager.decryptMessage(messageName, keyName);			
+			System.out.println("El mensaje era: ");
+			System.out.println(encryptManager.decryptMessage(messageName, keyName));;			
 		}
 	}
 
